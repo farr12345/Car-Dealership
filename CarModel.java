@@ -1,5 +1,5 @@
 
-
+//add java doc
 // CarModel class represents an individual car model its attributes describing the car
 public class CarModel {
    private String name;
@@ -42,6 +42,16 @@ public class CarModel {
    public String getType() {
        return type;
    }
+
+    public static void main(String[] args) {
+        CarModel carModel = new CarModel("Model X", 1800, 50000, 10000, "Hatchback");
+        System.out.println(carModel.getName());
+        System.out.println(carModel.getWeight());
+        System.out.println(carModel.getSales_price());
+        System.out.println(carModel.getNSold());
+        System.out.println(carModel.getType());
+
+    }
 
 }
 

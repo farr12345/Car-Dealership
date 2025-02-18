@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-
+//add some java doc
 // Manufacturer class represents a car manufacturer that manages multiple car models
 class Manufacturer {
     //attributes for the name of the manufacturer and the list of their car models
@@ -22,6 +22,11 @@ class Manufacturer {
     // Method to add car models
     public void addCarModel(CarModel model) {
         carModels.add(model);
+    }
+
+    // Getter method for list of Car models
+    public List<CarModel> getCarModels() {
+        return carModels;
     }
 
     // Method to display all car models of the manufacturer
@@ -116,6 +121,7 @@ class Manufacturer {
             CarModel car2 = new CarModel("Model Y", 1500, 40000, 8000, "Saloon");
             CarModel car3 = new CarModel("Model Z", 2000, 70000, 5000, "Estate");
             CarModel car4 = new CarModel("Model A", 1700, 30000, 12000, "Hatchback");
+            // stops the program as the car model isn't a valid type CarModel car5 = new CarModel("Model A", 1800, 50000, 10000, "SUV");
 
             // Add car models to manufacturer
             manufacturer.addCarModel(car1);
@@ -129,11 +135,15 @@ class Manufacturer {
             // Find and display the most expensive car model
             manufacturer.displayMostExpensiveCarModel();
 
-            // Calculate and display revenue for Hatchbacks
+            // Calculate and display revenue for each type
             manufacturer.calculateTotalRevenueByType("Hatchback");
+            manufacturer.calculateTotalRevenueByType("Saloon");
+            manufacturer.calculateTotalRevenueByType("Estate");
 
-            // Find and display cars priced above $45000
+            // Find and display cars priced above £45000
             manufacturer.displayCarModelsAbovePrice(45000);
+            //Find and display cars prices above £1000000
+            manufacturer.displayCarModelsAbovePrice(1000000);
 
         } catch (IllegalArgumentException e) {
             // Catch and display any validation errors
