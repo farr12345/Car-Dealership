@@ -3,7 +3,7 @@ import java.util.List;
 
 //add some java doc
 /*
-
+Reporting
  */
 public class Reporting {
     private List<Manufacturer> manufacturers; // List of all manufacturers
