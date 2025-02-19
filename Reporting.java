@@ -1,9 +1,16 @@
 import java.util.ArrayList;
 import java.util.List;
 
-//add some java doc
-/*
-Reporting
+/**
+* the (@code Reporting) class manages multiple muanufacturers and provides
+ * methods to analyse and report on car sales, pricing and revenue by type
+ * <p>
+ *   - Adding manufacturers.
+ *   - Displaying all manufacturers and their car models.
+ *   - Finding the most expensive car model sold.
+ *   - Retrieving car models above a certain price.
+ *   - Calculating and identifying the manufacturer with the highest revenue for a specific car type.
+ * </p>
  */
 public class Reporting {
     private List<Manufacturer> manufacturers; // List of all manufacturers
@@ -13,11 +20,21 @@ public class Reporting {
         this.manufacturers = new ArrayList<>();
     }
 
+
+    /**
+     * Adds a manufacturer to the reporting system.
+     *
+     * @param manufacturer the manufacturer to be added
+     */
     // Method to add a manufacturer to the reporting system
     public void addManufacturer(Manufacturer manufacturer) {
         manufacturers.add(manufacturer);
     }
 
+    /**
+     * Displays all manufacturers and their car models.
+     * If no manufacturers exist, a message is displayed.
+     */
     // Method to display all manufacturers and their car models
     public void displayAllManufacturers() {
         if (manufacturers.isEmpty()) {
@@ -30,6 +47,12 @@ public class Reporting {
         }
     }
 
+    /**
+     * Retrieves a manufacturer by its name.
+     *
+     * @param name the name of the manufacturer
+     * @return the {@code Manufacturer} object if found, otherwise {@code null}
+     */
     // Method to get a manufacturer by name
     public Manufacturer getManufacturerByName(String name) {
         for (Manufacturer manufacturer : manufacturers) {
@@ -39,6 +62,11 @@ public class Reporting {
         }
         return null; // Return null if manufacturer not found
     }
+
+    /**
+     * Finds and displays the most expensive car model sold across all manufacturers.
+     * If no cars exist, a message is displayed.
+     */
     // Method to find and display the most expensive car model sold
     public void displayMostExpensiveCarModelSold() {
         if (manufacturers.isEmpty()) {
@@ -70,6 +98,12 @@ public class Reporting {
         }
     }
 
+    /**
+     * Retrieves a list of car models that have a sales price above a specified amount.
+     *
+     * @param price the minimum price threshold
+     * @return a list of {@code CarModel} objects that are priced above the given amount
+     */
     public List<CarModel> getCarModelsAbovePrice(double price) {
         List<CarModel> expensiveCars = new ArrayList<>();
 
@@ -85,7 +119,16 @@ public class Reporting {
         return expensiveCars;
     }
 
-    // **Method to display revenue for each manufacturer and the one with the highest revenue for a specific car type**
+/**
+ * Displays the revenue for each manufacturer based on the given car type
+ * and identifies the manufacturer with the highest revenue for that type.
+ * <p>
+ * If no manufacturers exist or the car type is invalid, a message is displayed.
+ * </p>
+ *
+ * @param carType the type of car (hatchback, saloon, or estate)
+ */
+    // Method to display revenue for each manufacturer and the one with the highest revenue for a specific car type
     public void displayManufacturerWithHighestRevenueByType(String carType) {
         if (manufacturers.isEmpty()) {
             System.out.println("No manufacturers available.");
