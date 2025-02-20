@@ -11,16 +11,26 @@ public class ReportingIO {
     private List<Manufacturer> manufacturers;
     private Scanner scanner;
 
+    /**
+     * Constructor initializes the list of manufacturers and the scanner for user input.
+     */
     public ReportingIO() {
         this.manufacturers = new ArrayList<>();
         this.scanner = new Scanner(System.in);
     }
 
+    /**
+     * The main entry point of the program.
+     * Where the reportingIO object is run
+     */
     public static void main(String[] args) {
         ReportingIO reportingIO = new ReportingIO();
         reportingIO.run();
     }
 
+    /**
+     * Runs the main loop, displaying the menu and processing user choices.
+     */
     public void run() {
         while (true) {
             displayMenu();
@@ -51,6 +61,10 @@ public class ReportingIO {
             }
         }
     }
+
+    /**
+     * Displays the main menu options to the user.
+     */
     private void displayMenu() {
         System.out.println("Welcome to the Reporting System");
         System.out.println("1. Enter Manufacturer Data");
@@ -60,6 +74,12 @@ public class ReportingIO {
         System.out.println("5. Generate Reports");
         System.out.println("6. Exit Program");
     }
+
+    /**
+     * Reads the user's menu choice and returns it as an integer.
+     *
+     * @return The user's selected option or -1 if an invalid input is given.
+     */
     private int getUserChoice() {
         try {
             return Integer.parseInt(scanner.nextLine());
@@ -69,6 +89,9 @@ public class ReportingIO {
         }
     }
 
+    /**
+     * Allows the user to enter a new manufacturer name and adds it to the list.
+     */
     private void enterManufacturerData() {
         System.out.println("\n Enter manufacturer name: ");
         String name = scanner.nextLine();
@@ -77,16 +100,25 @@ public class ReportingIO {
 
     }
 
+    /**
+     * Allows the user to enter data for a new car model under a selected manufacturer.
+     */
     private void enterCarModelData() {
         if (manufacturers.isEmpty()) {
             System.out.println("No manufacturers available. Please adda manufacturer first.");
             return;
         }
+        /**
+         * prints out available manufacturers assigned to the index it is saved to in the list +1
+         */
         System.out.println("\n Available Manufacturers:");
         for (int i = 0; i < manufacturers.size(); i++) {
             System.out.println((i + 1) + ". " + manufacturers.get(i).getMname());
         }
 
+        /**
+         * if the choice is less than 1 or greater than the size of the list it shows the invalid message
+         */
         int choice = getUserChoice();
         if (choice < 1 || choice > manufacturers.size()) {
             System.out.println("Invalid manufacturer selection.");
@@ -121,6 +153,9 @@ public class ReportingIO {
     }
 
 
+    /**
+     * Displays a list of all registered manufacturers.
+     */
     private void listAllManufacturer() {
         if (manufacturers.isEmpty()) {
             System.out.println("No manufacturers available.");
@@ -133,6 +168,9 @@ public class ReportingIO {
         }
     }
 
+    /**
+     * Prompts the user to enter a manufacturer's name and displays its car models
+     */
     private void listCarModelsByManufacturer() {
         if (manufacturers.isEmpty()) {
             System.out.println("No manufacturers available. add a manufacturer first");
@@ -157,6 +195,12 @@ public class ReportingIO {
 
     }
 
+    /**
+     * generates various reports based on user selection.
+     * User can choose to: Find the manufacturer with the highest revenue for a specific car type
+     * Display the most expensive car model sold
+     * List car models above a given price
+     */
     private void generateReports() {
         if (manufacturers.isEmpty()) {
             System.out.println("No data available.");
@@ -172,6 +216,11 @@ public class ReportingIO {
         int reportChoice = getUserChoice();
         switch (reportChoice) {
             case 1:
+                /**
+                 * asks for a specific type of car type to search the list of manufacturers
+                 * replacing the variable highestRevenue when the manufacturer is found
+                 * and finding its total revenue
+                 */
                 System.out.println("Enter Car Type (Hatchback, Saloon, Estate): ");
                 String type = scanner.nextLine();
                 Manufacturer topManufacturer = null;
@@ -193,6 +242,10 @@ public class ReportingIO {
                 break;
 
             case 2:
+                /**
+                 * using the displayMostExpensiveCarModel() from the manufacturer class
+                 * to find the most expensive car model across all manufacturers
+                 */
                 System.out.println("\n Most Expensive car model sold");
                 for (Manufacturer manufacturer : manufacturers) {
                     manufacturer.displayMostExpensiveCarModel();
@@ -201,6 +254,10 @@ public class ReportingIO {
                 break;
 
             case 3:
+                /**
+                 * Prompts for the minimum price from the user and
+                 * displays all the cars that are above the price entered
+                 */
                 System.out.println("Enter minimum price (£): ");
                 double price = Double.parseDouble(scanner.nextLine());
                 for (Manufacturer manufacturer : manufacturers) {
