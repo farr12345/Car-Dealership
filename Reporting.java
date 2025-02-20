@@ -82,6 +82,7 @@ public class Reporting {
             for (CarModel model : manufacturer.getCarModels()) {
                 if (mostExpensiveCar == null || model.getSales_price() > mostExpensiveCar.getSales_price()) {
                     mostExpensiveCar = model;
+                    mostExpensiveManufacturer = manufacturer;
                 }
             }
         }
@@ -90,6 +91,7 @@ public class Reporting {
         if (mostExpensiveCar != null) {
             System.out.println("\n Most Expensive Car Model Sold");
             System.out.println("Name: " + mostExpensiveCar.getName());
+            System.out.println("Manufacturer: " + mostExpensiveManufacturer.getMname());
             System.out.println("Sales Price: £" + mostExpensiveCar.getSales_price());
             System.out.println("Type: " + mostExpensiveCar.getType());
             System.out.println("Units Sold: " + mostExpensiveCar.getNSold());
@@ -175,24 +177,33 @@ public class Reporting {
     }
 
     public static void main(String[] args) {
-        Reporting report = new Reporting();
+        try {
+            Reporting report = new Reporting();
 
-        Manufacturer tesla = new Manufacturer("Tesla");
-        Manufacturer ford = new Manufacturer("Ford");
+            Manufacturer tesla = new Manufacturer("Tesla");
+            Manufacturer ford = new Manufacturer("Ford");
 
-        tesla.addCarModel(new CarModel("Model X", 1800, 50000, 10000, "Hatchback"));
-        tesla.addCarModel(new CarModel("Model S", 1600, 80000, 6000, "Saloon"));
-        ford.addCarModel(new CarModel("Mustang", 2000, 55000, 5000, "Saloon"));
-        ford.addCarModel(new CarModel("Focus", 1400, 25000, 20000, "Hatchback"));
+            tesla.addCarModel(new CarModel("Model X", 1800, 50000, 10000, "Hatchback"));
+            tesla.addCarModel(new CarModel("Model S", 1600, 80000, 6000, "Saloon"));
+            ford.addCarModel(new CarModel("Mustang", 2000, 55000, 5000, "Saloon"));
+            ford.addCarModel(new CarModel("Focus", 1400, 25000, 20000, "Hatchback"));
 
-        report.addManufacturer(tesla);
-        report.addManufacturer(ford);
+            report.addManufacturer(tesla);
+            report.addManufacturer(ford);
 
-        report.displayAllManufacturers();
-        report.getManufacturerByName(tesla.getMname());
+            report.displayAllManufacturers();
+            report.getManufacturerByName(tesla.getMname());
 
-        report.displayMostExpensiveCarModelSold();
-        report.displayManufacturerWithHighestRevenueByType("Saloon");
+            report.getCarModelsAbovePrice(1000);
+            report.getCarModelsAbovePrice(1800);
+            report.getCarModelsAbovePrice(-100);
+
+            report.displayMostExpensiveCarModelSold();
+            report.displayManufacturerWithHighestRevenueByType("Saloon");
+        } catch (IllegalArgumentException e) {
+            // Catch and display any validation errors
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 }
 

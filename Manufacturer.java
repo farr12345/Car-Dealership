@@ -163,7 +163,10 @@ class Manufacturer {
 
     // Main method for testing
     public static void main(String[] args) {
-        try {
+        try {/**
+              *https://www.w3schools.com/java/java_try_catch.asp
+              *try catch is used to catch errors
+              */
             // Create manufacturer object
             Manufacturer manufacturer = new Manufacturer("Tesla");
 
@@ -180,6 +183,8 @@ class Manufacturer {
             manufacturer.addCarModel(car3);
             manufacturer.addCarModel(car4);
 
+
+
             // Display all car models
             manufacturer.displayManufacturer();
 
@@ -189,7 +194,10 @@ class Manufacturer {
             // Calculate and display revenue for each type
             manufacturer.calculateTotalRevenueByType("Hatchback");
             manufacturer.calculateTotalRevenueByType("Saloon");
-            manufacturer.calculateTotalRevenueByType("Estate");
+            //boundary
+            manufacturer.calculateTotalRevenueByType("EsTatE");
+            //erroneous
+            manufacturer.calculateTotalRevenueByType("SUV");
 
             // Find and display cars priced above £45000
             manufacturer.displayCarModelsAbovePrice(45000);
@@ -199,6 +207,9 @@ class Manufacturer {
         } catch (IllegalArgumentException e) {
             // Catch and display any validation errors
             System.out.println("Error: " + e.getMessage());
+            /**
+             * https://www.geeksforgeeks.org/throwable-getmessage-method-in-java-with-examples/
+             */
         }
     }
 }

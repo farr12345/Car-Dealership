@@ -34,7 +34,14 @@ public class CarModel {
     // Constructor to initialize a CarModel object
    public CarModel(String name, double weight, double sales_price, int NSold, String type) {
        // Validate car type
+       /**
+        * https://www.w3schools.com/java/ref_string_equalsignorecase.asp
+        */
        if (!type.equalsIgnoreCase("hatchback") && !type.equalsIgnoreCase("saloon") && !type.equalsIgnoreCase("estate")) {
+           /**
+            * https://stackoverflow.com/questions/10344187/is-this-the-correct-way-to-use-an-illegalargumentexception
+            *
+            */
            throw new IllegalArgumentException("Invalid car type. Must be hatchback, saloon, or estate.");
        }
 
@@ -67,12 +74,17 @@ public class CarModel {
    }
 
     public static void main(String[] args) {
-        CarModel carModel = new CarModel("Model X", 1800, 50000, 10000, "Hatchback");
-        System.out.println(carModel.getName());
-        System.out.println(carModel.getWeight());
-        System.out.println(carModel.getSales_price());
-        System.out.println(carModel.getNSold());
-        System.out.println(carModel.getType());
+       try {
+           CarModel carModel = new CarModel("Model X", 1800, 50000, 10000, "Hatchback");
+           System.out.println(carModel.getName());
+           System.out.println(carModel.getWeight());
+           System.out.println(carModel.getSales_price());
+           System.out.println(carModel.getNSold());
+           System.out.println(carModel.getType());
+       } catch (IllegalArgumentException e) {
+           // Catch and display any validation errors
+           System.out.println("Error: " + e.getMessage());
+           }
 
     }
 
