@@ -194,8 +194,11 @@ public class Reporting {
             report.displayAllManufacturers();
             report.getManufacturerByName(tesla.getMname());
 
+            //valid
             report.getCarModelsAbovePrice(1000);
-            report.getCarModelsAbovePrice(1800);
+            //boundary
+            report.getCarModelsAbovePrice(50000);
+            //erroneous
             report.getCarModelsAbovePrice(-100);
 
             report.displayMostExpensiveCarModelSold();

@@ -192,6 +192,7 @@ class Manufacturer {
             manufacturer.displayMostExpensiveCarModel();
 
             // Calculate and display revenue for each type
+            //valid
             manufacturer.calculateTotalRevenueByType("Hatchback");
             manufacturer.calculateTotalRevenueByType("Saloon");
             //boundary
@@ -199,9 +200,12 @@ class Manufacturer {
             //erroneous
             manufacturer.calculateTotalRevenueByType("SUV");
 
-            // Find and display cars priced above £45000
-            manufacturer.displayCarModelsAbovePrice(45000);
-            //Find and display cars prices above £1000000
+            //valid
+            manufacturer.displayCarModelsAbovePrice(15000);
+            // Boundary
+            manufacturer.displayCarModelsAbovePrice(40000);
+            //erroneous
+            manufacturer.displayCarModelsAbovePrice(-1000000);
             manufacturer.displayCarModelsAbovePrice(1000000);
 
         } catch (IllegalArgumentException e) {
